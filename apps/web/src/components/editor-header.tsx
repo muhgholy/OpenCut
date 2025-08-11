@@ -20,6 +20,19 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { usePlaybackStore } from "@/stores/playback-store";
 import { TransitionUpIcon } from "./icons";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import Link from "next/link";
+import { RenameProjectDialog } from "./rename-project-dialog";
+import { DeleteProjectDialog } from "./delete-project-dialog";
+import { useRouter } from "next/navigation";
+import { FaDiscord } from "react-icons/fa6";
+import { useTheme } from "next-themes";
 
 export function EditorHeader() {
   const { getTotalDuration } = useTimelineStore();
