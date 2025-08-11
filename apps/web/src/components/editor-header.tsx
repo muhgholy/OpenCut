@@ -14,20 +14,10 @@ import { HeaderBase } from "./header-base";
 import { formatTimeCode } from "@/lib/time";
 import { useProjectStore } from "@/stores/project-store";
 import { KeyboardShortcutsHelp } from "./keyboard-shortcuts-help";
-import { useState } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import Link from "next/link";
-import { RenameProjectDialog } from "./rename-project-dialog";
-import { DeleteProjectDialog } from "./delete-project-dialog";
-import { useRouter } from "next/navigation";
-import { FaDiscord } from "react-icons/fa6";
-import { useTheme } from "next-themes";
+import { VideoExportDialog } from "./export/VideoExportDialog";
+import { useState, useRef } from "react";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import { usePlaybackStore } from "@/stores/playback-store";
 
 export function EditorHeader() {
@@ -39,12 +29,6 @@ export function EditorHeader() {
   const router = useRouter();
   const { theme, setTheme } = useTheme();
 
-  const handleExport = () => {
-    // TODO: Implement export functionality
-    // NOTE: This is already being worked on
-    console.log("Export project");
-    window.open("https://youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
-  };
 
   const handleNameSave = async (newName: string) => {
     console.log("handleNameSave", newName);
@@ -148,23 +132,16 @@ export function EditorHeader() {
   const rightContent = (
     <nav className="flex items-center gap-2">
       <KeyboardShortcutsHelp />
-      <Button
-        size="sm"
-        className="h-8 text-xs !bg-linear-to-r from-cyan-400 to-blue-500 text-white hover:opacity-85 transition-opacity"
-        onClick={handleExport}
-      >
-        <Download className="h-4 w-4" />
-        <span className="text-sm pr-1">Export</span>
-      </Button>
-      <Button
-        size="icon"
-        variant="text"
-        className="h-7"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      >
-        <Sun className="!size-[1.1rem]" />
-        <span className="sr-only">{theme === "dark" ? "Light" : "Dark"}</span>
-      </Button>
+      <VideoExportDialog>
+        <Button
+          size="sm"
+          variant="primary"
+          className="h-7 text-xs"
+        >
+          <Download className="h-4 w-4" />
+          <span className="text-sm">Export</span>
+        </Button>
+      </VideoExportDialog>
     </nav>
   );
 
