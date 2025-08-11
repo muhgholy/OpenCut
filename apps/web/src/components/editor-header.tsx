@@ -19,6 +19,7 @@ import { useState, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { usePlaybackStore } from "@/stores/playback-store";
+import { TransitionUpIcon } from "./icons";
 
 export function EditorHeader() {
   const { getTotalDuration } = useTimelineStore();
@@ -62,7 +63,7 @@ export function EditorHeader() {
             <span className="text-[0.85rem] mr-2">{activeProject?.name}</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" className="w-40">
+        <DropdownMenuContent align="start" className="w-40 z-100">
           <Link href="/projects">
             <DropdownMenuItem className="flex items-center gap-1.5">
               <ArrowLeft className="h-4 w-4" />
@@ -142,6 +143,16 @@ export function EditorHeader() {
           <span className="text-sm">Export</span>
         </Button>
       </VideoExportDialog>
+      <ExportButton />
+      <Button
+        size="icon"
+        variant="text"
+        className="h-7"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      >
+        <Sun className="!size-[1.1rem]" />
+        <span className="sr-only">{theme === "dark" ? "Light" : "Dark"}</span>
+      </Button>
     </nav>
   );
 
@@ -152,5 +163,29 @@ export function EditorHeader() {
       rightContent={rightContent}
       className="bg-background h-[3.2rem] px-3 items-center mt-0.5"
     />
+  );
+}
+
+function ExportButton() {
+  const handleExport = () => {
+    // TODO: Implement export functionality
+    // NOTE: This is already being worked on
+    console.log("Export project");
+    window.open("https://youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+  };
+
+  return (
+    <button
+      className="flex items-center gap-1.5 bg-[#38BDF8] text-white rounded-md px-[0.1rem] py-[0.1rem] cursor-pointer hover:brightness-95 transition-all duration-200"
+      onClick={handleExport}
+    >
+      <div className="flex items-center gap-1.5 bg-linear-270 from-[#37B6F7] to-[#2567EC] rounded-[0.8rem] px-4 py-1 relative shadow-[0_1px_3px_0px_rgba(0,0,0,0.45)]">
+        <TransitionUpIcon className="z-50" />
+        <span className="text-[0.875rem] z-50">Export</span>
+        <div className="absolute w-full h-full left-0 top-0 bg-linear-to-t from-white/0 to-white/50 z-10 rounded-[0.8rem] flex items-center justify-center">
+          <div className="absolute w-[calc(100%-6px)] h-[calc(100%-4px)] top-0.5 bg-linear-270 from-[#37B6F7] to-[#2567EC] z-50 rounded-lg"></div>
+        </div>
+      </div>
+    </button>
   );
 }

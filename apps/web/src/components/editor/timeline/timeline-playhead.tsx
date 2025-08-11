@@ -55,6 +55,7 @@ export function TimelinePlayhead({
       (tracksScrollRef.current?.querySelector(
         "[data-radix-scroll-area-viewport]"
       ) as HTMLElement | null) || tracksScrollRef.current;
+    // const tracksViewport = tracksScrollRef.current;
 
     if (!tracksViewport) return;
 
