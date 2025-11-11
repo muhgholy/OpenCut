@@ -370,7 +370,7 @@ export function Timeline() {
         Math.min(
           duration,
           (mouseX + scrollLeft) /
-            (TIMELINE_CONSTANTS.PIXELS_PER_SECOND * zoomLevel)
+          (TIMELINE_CONSTANTS.PIXELS_PER_SECOND * zoomLevel)
         )
       );
 
@@ -686,25 +686,22 @@ export function Timeline() {
                     return (
                       <div
                         key={i}
-                        className={`absolute top-0 h-4 ${
-                          isMainMarker
-                            ? "border-l border-muted-foreground/40"
-                            : "border-l border-muted-foreground/20"
-                        }`}
+                        className={`absolute top-0 h-4 ${isMainMarker
+                          ? "border-l border-muted-foreground/40"
+                          : "border-l border-muted-foreground/20"
+                          }`}
                         style={{
-                          left: `${
-                            time *
+                          left: `${time *
                             TIMELINE_CONSTANTS.PIXELS_PER_SECOND *
                             zoomLevel
-                          }px`,
+                            }px`,
                         }}
                       >
                         <span
-                          className={`absolute top-1 left-1 text-[0.6rem] ${
-                            isMainMarker
-                              ? "text-muted-foreground font-medium"
-                              : "text-muted-foreground/70"
-                          }`}
+                          className={`absolute top-1 left-1 text-[0.6rem] ${isMainMarker
+                            ? "text-muted-foreground font-medium"
+                            : "text-muted-foreground/70"
+                            }`}
                         >
                           {(() => {
                             const formatTime = (seconds: number) => {
@@ -716,8 +713,8 @@ export function Timeline() {
                                 return `${hours}:${minutes
                                   .toString()
                                   .padStart(2, "0")}:${Math.floor(secs)
-                                  .toString()
-                                  .padStart(2, "0")}`;
+                                    .toString()
+                                    .padStart(2, "0")}`;
                               }
                               if (minutes > 0) {
                                 return `${minutes}:${Math.floor(secs)
@@ -1240,9 +1237,8 @@ function TimelineToolbar({
             <TooltipTrigger asChild>
               <Button variant="text" size="icon" onClick={toggleRippleEditing}>
                 <Link
-                  className={`h-4 w-4 ${
-                    rippleEditingEnabled ? "text-primary" : ""
-                  }`}
+                  className={`h-4 w-4 ${rippleEditingEnabled ? "text-primary" : ""
+                    }`}
                 />
               </Button>
             </TooltipTrigger>
